@@ -1,13 +1,18 @@
-import { useNavigation } from '@react-navigation/native';
 import { useEffect, useState } from 'react';
 import { Image, Text } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { MaterialIcons } from '@expo/vector-icons';
+import { MaterialIcons as Icon } from '@expo/vector-icons';
+
+import styles from './styles';
 
 const RestScreen = () => {
   const navigation = useNavigation();
+
+  const { safeAreaView, image, breakText, timeLeftText } = styles;
+
   let timer = 0;
-  const [timeLeft, setTimeLeft] = useState(2);
+  const [timeLeft, setTimeLeft] = useState(3);
 
   const startTime = () => {
     setTimeout(() => {
@@ -26,37 +31,17 @@ const RestScreen = () => {
   });
 
   return (
-    <SafeAreaView style={{ display: 'flex', alignItems: 'center' }}>
+    <SafeAreaView style={safeAreaView}>
       <Image
         source={{
           uri: 'https://img.freepik.com/free-photo/full-length-athlete-sipping-water-from-fitness-bottle-exhausted-after-workout_1098-18878.jpg?w=360&t=st=1689099570~exp=1689100170~hmac=a60d176d8a393f59b8b032dd294005ceedbd048a04c01e542bcffa815ecd4428',
         }}
-        style={{
-          width: '90%',
-          height: 420,
-          borderRadius: 20,
-        }}
+        style={image}
       />
-      <Text
-        style={{
-          fontSize: 30,
-          fontWeight: '900',
-          marginTop: 50,
-          textAlign: 'center',
-        }}
-      >
-        TAKE A BREAK!
-      </Text>
+      <Text style={breakText}>TAKE A BREAK!</Text>
 
-      <Text
-        style={{
-          fontSize: 35,
-          fontWeight: '900',
-          marginTop: 50,
-          textAlign: 'center',
-        }}
-      >
-        <MaterialIcons name='timer' size={26} color='black' /> {timeLeft}
+      <Text style={timeLeftText}>
+        <Icon name='timer' size={26} color='black' /> {timeLeft}
       </Text>
     </SafeAreaView>
   );
