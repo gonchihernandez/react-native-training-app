@@ -28,7 +28,6 @@ const StackNavigator = () => {
           name={HOME}
           component={TabsNavigator}
         />
-
         <Stack.Screen
           options={{ headerShown: false }}
           name={WORKOUT}

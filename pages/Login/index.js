@@ -6,6 +6,8 @@ import * as Yup from 'yup';
 
 import { ROUTES } from '../../utils/constants';
 
+import styles from './styles';
+
 import TextInput from '../../components/TextInput';
 import Button from '../../components/Button';
 
@@ -21,6 +23,8 @@ const Login = () => {
   const navigation = useNavigation();
   const { HOME } = ROUTES;
 
+  const { viewContainer, viewContainerForm, viewInput, image } = styles;
+
   const { handleChange, handleBlur, handleSubmit, values, errors, touched } =
     useFormik({
       validationSchema: LoginSchema,
@@ -34,30 +38,9 @@ const Login = () => {
   const password = useRef(null);
 
   return (
-    <View
-      style={{
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}
-    >
-      <Image
-        source={require('../assets/andesft.jpg')}
-        style={{
-          width: '90%',
-          height: '41%',
-          borderRadius: 300,
-        }}
-      />
-      <View
-        style={{
-          paddingHorizontal: 32,
-          marginBottom: 16,
-          marginTop: 30,
-          width: '100%',
-        }}
-      >
+    <View style={viewContainer}>
+      <Image source={require('../../assets/andesft.jpg')} style={image} />
+      <View style={viewContainerForm}>
         <TextInput
           icon='mail'
           placeholder='Enter your email'
@@ -74,7 +57,7 @@ const Login = () => {
           onSubmitEditing={() => password.current?.focus()}
         />
       </View>
-      <View style={{ paddingHorizontal: 32, marginBottom: 16, width: '100%' }}>
+      <View style={viewInput}>
         <TextInput
           ref={password}
           icon='key'
