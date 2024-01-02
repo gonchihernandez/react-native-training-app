@@ -1,11 +1,13 @@
-import React, { useRef } from 'react';
-import { Text, View } from 'react-native';
+import { useRef } from 'react';
+import { Image, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
-import TextInput from '../components/TextInput';
-import Button from '../components/Button';
+import { ROUTES } from '../../utils/constants';
+
+import TextInput from '../../components/TextInput';
+import Button from '../../components/Button';
 
 const LoginSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email').required('Required'),
@@ -17,6 +19,7 @@ const LoginSchema = Yup.object().shape({
 
 const Login = () => {
   const navigation = useNavigation();
+  const { HOME } = ROUTES;
 
   const { handleChange, handleBlur, handleSubmit, values, errors, touched } =
     useFormik({
@@ -24,7 +27,7 @@ const Login = () => {
       initialValues: { email: '', password: '' },
       onSubmit: (values) => {
         alert(`Email: ${values.email}, Password: ${values.password}`),
-          navigation.navigate('Home');
+          navigation.navigate(HOME);
       },
     });
 
@@ -39,10 +42,22 @@ const Login = () => {
         justifyContent: 'center',
       }}
     >
-      <Text style={{ color: '#223e4b', fontSize: 20, marginBottom: 16 }}>
-        Login
-      </Text>
-      <View style={{ paddingHorizontal: 32, marginBottom: 16, width: '100%' }}>
+      <Image
+        source={require('../assets/andesft.jpg')}
+        style={{
+          width: '90%',
+          height: '41%',
+          borderRadius: 300,
+        }}
+      />
+      <View
+        style={{
+          paddingHorizontal: 32,
+          marginBottom: 16,
+          marginTop: 30,
+          width: '100%',
+        }}
+      >
         <TextInput
           icon='mail'
           placeholder='Enter your email'
