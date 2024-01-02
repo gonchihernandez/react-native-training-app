@@ -7,9 +7,13 @@ import { Octicons } from '@expo/vector-icons';
 
 import { FitnessItems } from '../context/FitnessContext';
 
+import {ROUTES} from '../utils/constants'
+
 const FitScreen = () => {
   const route = useRoute();
   const navigation = useNavigation();
+  const { HOME, NEW_WORKOUT, LOGIN, WORKOUT, FIT, REST } = ROUTES;
+
   const [index, setIndex] = useState(0);
   const exercise = route.params.exercises;
   const current = exercise[index];
@@ -59,7 +63,7 @@ const FitScreen = () => {
       {index + 1 >= exercise.length ? (
         <TouchableOpacity
           onPress={() => {
-            navigation.navigate('Home');
+            navigation.navigate(HOME);
             setCompleted([...completed, current?.name]);
             setWorkout(workout + 1);
             setMinutes(minutes + 2.5);
@@ -92,7 +96,7 @@ const FitScreen = () => {
       ) : (
         <TouchableOpacity
           onPress={() => {
-            navigation.navigate('Rest');
+            navigation.navigate(REST);
             setCompleted([...completed, current?.name]);
             setWorkout(workout + 1);
             setMinutes(minutes + 2.5);
@@ -137,7 +141,7 @@ const FitScreen = () => {
         <TouchableOpacity
           disabled={index === 0}
           onPress={() => {
-            navigation.navigate('Rest');
+            navigation.navigate(REST');
             setTimeout(() => {
               setIndex(index - 1);
             }, 2000);
@@ -160,7 +164,7 @@ const FitScreen = () => {
         {index + 1 >= exercise.length ? (
           <TouchableOpacity
             onPress={() => {
-              navigation.navigate('Home');
+              navigation.navigate(HOME);
             }}
             style={{ borderRadius: 30, padding: 10, width: '42%' }}
           >
@@ -179,7 +183,7 @@ const FitScreen = () => {
         ) : (
           <TouchableOpacity
             onPress={() => {
-              navigation.navigate('Rest');
+              navigation.navigate(REST);
 
               setTimeout(() => {
                 setIndex(index + 1);

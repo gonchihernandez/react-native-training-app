@@ -5,11 +5,15 @@ import { Ionicons } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 
+import { ROUTES } from '../utils/constants';
+
 import { FitnessItems } from '../context/FitnessContext';
 
 const WorkoutScreen = () => {
   const route = useRoute();
   const navigation = useNavigation();
+  const { FIT } = ROUTES;
+
   const { completed, setCompleted } = useContext(FitnessItems);
 
   return (
@@ -107,7 +111,7 @@ const WorkoutScreen = () => {
 
       <TouchableOpacity
         onPress={() => {
-          navigation.navigate('Fit', { exercises: route.params.exercises });
+          navigation.navigate(FIT, { exercises: route.params.exercises });
           setCompleted([]);
         }}
         style={{

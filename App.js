@@ -5,7 +5,7 @@ import StackNavigator from './navigator/StackNavigator';
 
 const App = () => (
   <FitnessContext>
-    <StatusBar style='light' backgroundColor='#9E9FA5' />
+    <StatusBar style='dark' backgroundColor='#9E9FA5' />
     <StackNavigator />
   </FitnessContext>
 );

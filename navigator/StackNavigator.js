@@ -20,14 +20,15 @@ const StackNavigator = () => {
       <Stack.Navigator>
         <Stack.Screen
           options={{ headerShown: false }}
-          name={HOME}
-          component={TabsNavigator}
-        />
-        <Stack.Screen
-          options={{ headerShown: false }}
           name={LOGIN}
           component={LoginScreen}
         />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name={HOME}
+          component={TabsNavigator}
+        />
+
         <Stack.Screen
           options={{ headerShown: false }}
           name={WORKOUT}

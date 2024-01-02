@@ -11,11 +11,15 @@ import { AntDesign } from '@expo/vector-icons';
 
 import { FitnessItems } from '../context/FitnessContext';
 
+import { ROUTES } from '../utils/constants';
+
 import MainLayout from '../navigator/TabsNavigator';
 import FitnessCards from '../components/FitnessCards';
+import Card from '../components/Card';
 
 const HomeScreen = () => {
   const navigation = useNavigation();
+  const { LOGIN } = ROUTES;
 
   const { calories, minutes, workout } = useContext(FitnessItems);
 
@@ -46,43 +50,20 @@ const HomeScreen = () => {
               paddingTop: 10,
             }}
           >
-            AndesFt [LOGO]
+            AndesFt
           </Text>
 
           {/* Logout Button */}
-          <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+          <TouchableOpacity onPress={() => navigation.navigate(LOGIN)}>
             <AntDesign name='logout' size={24} color='white' />
           </TouchableOpacity>
         </View>
 
         {/* Cards Info Row  */}
-        <View
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            marginBottom: 10,
-          }}
-        >
-          {/* First Info Card  */}
-          <View style={styles.shadowCards}>
-            <Text style={{ fontWeight: 'bold', fontSize: 18 }}>
-              {calories.toFixed(2)}
-            </Text>
-            <Text>KCAL</Text>
-          </View>
-
-          {/* Second Info Card  */}
-          <View style={styles.shadowCards}>
-            <Text style={{ fontWeight: 'bold', fontSize: 18 }}>{workout}</Text>
-            <Text>WORKOUTS</Text>
-          </View>
-
-          {/* Third Info Card  */}
-          <View style={styles.shadowCards}>
-            <Text style={{ fontWeight: 'bold', fontSize: 18 }}>{minutes}</Text>
-            <Text>MINUTES</Text>
-          </View>
+        <View style={styles.rowInfoCards}>
+          <Card value={calories.toFixed(2)} title='KCAL' />
+          <Card value={workout} title='WORKOUTS' />
+          <Card value={minutes} title='MINUTES' />
         </View>
       </View>
       {/* Fitness Cards  */}
@@ -94,17 +75,10 @@ const HomeScreen = () => {
 export default HomeScreen;
 
 const styles = StyleSheet.create({
-  shadowCards: {
-    backgroundColor: '#ffffff',
-    width: '32%',
-    height: 80,
-    borderRadius: 10,
+  rowInfoCards: {
+    flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
+    justifyContent: 'space-between',
+    marginBottom: 10,
   },
 });

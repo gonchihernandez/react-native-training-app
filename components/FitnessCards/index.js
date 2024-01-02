@@ -2,18 +2,22 @@ import { Image, Text, View, TouchableOpacity } from 'react-native';
 import { MaterialCommunityIcons as Icon } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 
-import fitness from '../../data/fitness';
+import { ROUTES } from '../../utils/constants';
 
 import styles from './styles';
 
+import fitness from '../../data/fitness';
+
 const FitnessCards = () => {
+  const { WORKOUT } = ROUTES;
+
   const { touchOpacity, icon, text, image } = styles;
 
   const FitnessData = fitness;
   const navigation = useNavigation();
 
   const handleOnPress = (item) => () => {
-    navigation.navigate('Workout', {
+    navigation.navigate(WORKOUT, {
       image: item.image,
       exercises: item.exercises,
       id: item.id,
