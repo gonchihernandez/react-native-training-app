@@ -2,7 +2,9 @@
 
 ## Introduction
 
-Welcome to the React Native Training App project! This README file provides an overview of the project and outlines the next steps to be completed.
+Welcome to the React Native Training App project created specially for my dear friend [AndesFt](https://www.instagram.com/andes.ft/).
+
+This README file provides an overview of the project and outlines the next steps to be completed.
 
 The project is built using Expo, React Native, React Native Navigation, Formik and Yup.
 
@@ -46,10 +48,6 @@ Like `npm start` / `yarn start`, but also attempts to open your app on a connect
   - [ ] Add animations and transitions.
   - [ ] Optimize layout for different screen sizes.
 
-- [ ] **Integrate Push Notifications:**
-  - [ ] Set up push notification services (e.g., Firebase Cloud Messaging).
-  - [ ] Implement push notification handling in the app.
-
 ### 2. Testing
 
 - [ ] **Unit Testing:**
@@ -71,10 +69,11 @@ Like `npm start` / `yarn start`, but also attempts to open your app on a connect
   - [ ] Remove warnings.
   - [ ] Update dependencies.
 
-- [ ] **Dependencies:**
+- [ ] **Code style:**
 
-  - [ ] Refactor styles.
-  - [ ] Refactor Components.
+  - [x] Refactor styles.
+  - [x] Refactor Components.
+  - [ ] Use absolute imports.
 
 ### 5. Deployment
 
