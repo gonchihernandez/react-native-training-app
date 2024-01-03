@@ -18,11 +18,11 @@ const StackNavigator = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen
+        {/* <Stack.Screen
           options={{ headerShown: false }}
           name={LOGIN}
           component={LoginScreen}
-        />
+        /> */}
         <Stack.Screen
           options={{ headerShown: false }}
           name={HOME}
