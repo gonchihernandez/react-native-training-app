@@ -1,15 +1,20 @@
-import { useRef } from 'react';
-import { Image, View } from 'react-native';
+import React, { useRef } from 'react';
+import { Image, View, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { API_URL } from '@env';
 
-import { ROUTES } from '../../utils/constants';
+import { ROUTES, METHODS } from '../../utils/constants';
 
 import styles from './styles';
 
 import TextInput from '../../components/TextInput';
 import Button from '../../components/Button';
+
+const { HOME } = ROUTES;
+const { POST } = METHODS;
 
 const LoginSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email').required('Required'),
@@ -21,17 +26,46 @@ const LoginSchema = Yup.object().shape({
 
 const Login = () => {
   const navigation = useNavigation();
-  const { HOME } = ROUTES;
 
   const { viewContainer, viewContainerForm, viewInput, image } = styles;
+
+  const saveCookie = async (nickname) => {
+    try {
+      await AsyncStorage.setItem('@token', nickname);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const { handleChange, handleBlur, handleSubmit, values, errors, touched } =
     useFormik({
       validationSchema: LoginSchema,
       initialValues: { email: '', password: '' },
-      onSubmit: (values) => {
-        alert(`Email: ${values.email}, Password: ${values.password}`),
-          navigation.navigate(HOME);
+      onSubmit: async (values) => {
+        try {
+          const response = await fetch(`${API_URL}/api/signin`, {
+            method: POST,
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              email: values.email,
+              password: values.password,
+            }),
+          });
+
+          const responseJson = await response.json();
+
+          const cookies = response.headers.get('set-cookie');
+
+          if (cookies) {
+            saveCookie(cookies);
+          }
+        } catch (error) {
+          console.error('Error:', error);
+          Alert.alert('Cannot connect to Server!');
+        }
+        navigation.navigate(HOME);
       },
     });
 

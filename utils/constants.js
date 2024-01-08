@@ -7,4 +7,9 @@ const ROUTES = {
   LOGIN: 'Login',
 };
 
-export { ROUTES };
+const METHODS = {
+  POST: 'POST',
+  GET: 'GET',
+};
+
+export { ROUTES, METHODS };
